@@ -18,6 +18,22 @@
         </jar>
     </target>
     <target name="serve" depends="package">
-        <java jar="hudson-demo.jar" fork="true"/>
+        <java jar="hudson-demo.jar" fork="true" spawn="true"/>
+    </target>
+    <target name="test" depends="serve">
+        <javac srcdir="test" destdir="test">
+            <classpath path="lib/selenium-java-client-driver.jar"/>
+            <classpath path="lib/junit-4.8.2.jar"/>
+        </javac>
+        <junit>
+            <classpath>
+                <pathelement location="lib/junit-4.8.2.jar"/>
+                <pathelement path="lib/selenium-java-client-driver.jar"/>
+                <pathelement path="test"/>
+            </classpath>
+            <test name="SmokeTest">
+                <formatter type="xml"/>
+            </test>
+        </junit>
     </target>
 </project>

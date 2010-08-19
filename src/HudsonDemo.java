@@ -3,10 +3,13 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.ServletException;
  
 import java.io.IOException;
+import java.net.URL;
+import java.net.HttpURLConnection;
  
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.server.Request;
 import org.eclipse.jetty.server.handler.AbstractHandler;
+
  
 public class HudsonDemo extends AbstractHandler
 {
@@ -24,6 +27,19 @@ public class HudsonDemo extends AbstractHandler
  
     public static void main(String[] args) throws Exception
     {
+        // check if server is already running
+        boolean serverLive = true;
+        HttpURLConnection client = (HttpURLConnection) (new URL("http://127.0.0.1:8080/").openConnection());
+        try {
+            client.connect();
+        } catch (IOException e) {
+            serverLive = false;
+        }
+        if(serverLive){
+            System.err.println("Server already running...exiting");
+            System.exit(1);
+        }
+
         Server server = new Server(8080);
         server.setHandler(new HudsonDemo());
  
