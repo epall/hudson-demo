@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<project name="Hudson Demo" default="run">
+    <target name="compile">
+        <javac srcdir="src" destdir="build">
+            <classpath path="lib/servlet-api-2.5.jar"/>
+            <classpath path="lib/jetty-all-7.1.6.v20100715.jar"/>
+        </javac>
+    </target>
+    <target name="package" depends="compile">
+        <jar destfile="hudson-demo.jar">
+            <fileset dir="build"/>
+            <zipfileset src="lib/servlet-api-2.5.jar"/>
+            <zipfileset src="lib/jetty-all-7.1.6.v20100715.jar"/>
+            <manifest>
+                <attribute name="Main-Class"
+                    value="HudsonDemo"/>
+            </manifest>
+        </jar>
+    </target>
+    <target name="serve" depends="package">
+        <java jar="hudson-demo.jar" fork="true"/>
+    </target>
+</project>
