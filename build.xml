@@ -31,7 +31,7 @@
                 <pathelement path="lib/selenium-java-client-driver.jar"/>
                 <pathelement path="test"/>
             </classpath>
-            <test name="SmokeTest">
+            <test name="SmokeTest" todir="test-reports">
                 <formatter type="xml"/>
             </test>
         </junit>
