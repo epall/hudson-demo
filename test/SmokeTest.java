@@ -4,8 +4,8 @@ import java.io.FileInputStream;
  
 public class SmokeTest extends SeleneseTestCase {
     public void setUp() throws Exception {
-        String username = System.getProperty("SAUCE_ONDEMAND_USERNAME");
-        String apiKey = System.getProperty("SAUCE_ONDEMAND_ACCESS_KEY");
+        String username = System.getenv("SAUCE_ONDEMAND_USERNAME");
+        String apiKey = System.getenv("SAUCE_ONDEMAND_ACCESS_KEY");
         if(username == null || apiKey == null){
             System.err.println("Sauce OnDemand credentials not set.");
             System.err.println("Please put your Sauce OnDemand credentials into the environment variables SAUCE_ONDEMAND_USERNAME and SAUCE_ONDEMAND_ACCESS_KEY");
