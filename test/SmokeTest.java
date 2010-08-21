@@ -26,6 +26,6 @@ public class SmokeTest extends SeleneseTestCase {
     
     public void testSauce() throws Exception {
         this.selenium.open("/");
-        assertTrue(this.selenium.isTextPresent("Hello, World"));
+        assertTrue(this.selenium.isTextPresent("Hello, World!"));
     }
 }
