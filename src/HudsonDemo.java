@@ -29,7 +29,7 @@ public class HudsonDemo extends AbstractHandler
     {
         // check if server is already running
         boolean serverLive = true;
-        HttpURLConnection client = (HttpURLConnection) (new URL("http://127.0.0.1:8080/").openConnection());
+        HttpURLConnection client = (HttpURLConnection) (new URL("http://127.0.0.1:8081/").openConnection());
         try {
             client.connect();
         } catch (IOException e) {
@@ -40,7 +40,7 @@ public class HudsonDemo extends AbstractHandler
             System.exit(1);
         }
 
-        Server server = new Server(8080);
+        Server server = new Server(8081);
         server.setHandler(new HudsonDemo());
  
         server.start();
