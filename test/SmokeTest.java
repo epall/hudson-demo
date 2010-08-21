@@ -4,17 +4,17 @@ import java.io.FileInputStream;
  
 public class SmokeTest extends SeleneseTestCase {
     public void setUp() throws Exception {
-        Properties configuration = new Properties();
-        configuration.load(new FileInputStream("ondemand.properties"));
-        if("YOUR_USERNAME".equals(configuration.getProperty("username"))){
-            System.err.println("Sauce OnDemand username not set.");
-            System.err.println("Please put your Sauce OnDemand credentails in ondemand.properties");
+        String username = System.getProperty("SAUCE_ONDEMAND_USERNAME");
+        String apiKey = System.getProperty("SAUCE_ONDEMAND_ACCESS_KEY");
+        if(username == null || apiKey == null){
+            System.err.println("Sauce OnDemand credentials not set.");
+            System.err.println("Please put your Sauce OnDemand credentials into the environment variables SAUCE_ONDEMAND_USERNAME and SAUCE_ONDEMAND_ACCESS_KEY");
         }
         DefaultSelenium selenium = new DefaultSelenium(
                 "saucelabs.com",
                 4444,
-                "{\"username\": \"" + configuration.getProperty("username") + "\"," +
-                "\"access-key\": \"" + configuration.getProperty("access-key") + "\"," +
+                "{\"username\": \"" + username + "\"," +
+                "\"access-key\": \"" + apiKey + "\"," +
                 "\"os\": \"Windows 2003\"," +
                 "\"browser\": \"firefox\"," +
                 "\"browser-version\": \"3.\"," +
