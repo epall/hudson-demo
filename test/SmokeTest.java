@@ -23,6 +23,12 @@ public class SmokeTest extends SeleneseTestCase {
         selenium.start();
         this.selenium = selenium;
     }
+    public void tearDown() throws Exception {
+        if (selenium != null) {
+            selenium.stop();
+            selenium = null;
+        }
+    }
     
     public void testSauce() throws Exception {
         this.selenium.open("/");
